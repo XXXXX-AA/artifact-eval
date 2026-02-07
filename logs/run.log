@@ -1,0 +1,821 @@
+Total reclaimed space: 0B
+*** Removing excess controllers/ofprotocols/ofdatapaths/pings/noxes
+killall controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+killall -9 controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+pkill -9 -f "sudo mnexec"
+*** Removing junk from /tmp
+rm -f /tmp/vconn* /tmp/vlogs* /tmp/*.out /tmp/*.log
+*** Removing old X11 tunnels
+*** Removing excess kernel datapaths
+ps ax | egrep -o 'dp[0-9]+' | sed 's/dp/nl:/'
+***  Removing OVS datapaths
+ovs-vsctl --timeout=1 list-br
+ovs-vsctl --timeout=1 list-br
+*** Removing all links of the pattern foo-ethX
+ip link show | egrep -o '([-_.[:alnum:]]+-eth[[:digit:]]+)'
+ip link show
+*** Killing stale mininet node processes
+pkill -9 -f mininet:
+*** Shutting down stale tunnels
+pkill -9 -f Tunnel=Ethernet
+pkill -9 -f .ssh/mn
+rm -f ~/.ssh/mn/*
+***  Removing SAP NAT rules
+*** Cleanup complete.
+worker0: kwargs {'ip': '10.0.0.1/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker0: update resources {}
+worker1: kwargs {'ip': '10.0.0.2/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker1: update resources {}
+worker2: kwargs {'ip': '10.0.0.3/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker2: update resources {}
+worker3: kwargs {'ip': '10.0.0.4/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker3: update resources {}
+worker4: kwargs {'ip': '10.0.0.5/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker4: update resources {}
+worker5: kwargs {'ip': '10.0.0.6/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker5: update resources {}
+worker6: kwargs {'ip': '10.0.0.7/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker6: update resources {}
+worker7: kwargs {'ip': '10.0.0.8/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker7: update resources {}
+worker8: kwargs {'ip': '10.0.0.9/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker8: update resources {}
+worker9: kwargs {'ip': '10.0.0.10/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker9: update resources {}
+worker10: kwargs {'ip': '10.0.0.11/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker10: update resources {}
+worker11: kwargs {'ip': '10.0.0.12/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker11: update resources {}
+worker12: kwargs {'ip': '10.0.0.13/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker12: update resources {}
+worker13: kwargs {'ip': '10.0.0.14/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker13: update resources {}
+worker14: kwargs {'ip': '10.0.0.15/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker14: update resources {}
+worker15: kwargs {'ip': '10.0.0.16/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker15: update resources {}
+worker16: kwargs {'ip': '10.0.0.17/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker16: update resources {}
+worker17: kwargs {'ip': '10.0.0.18/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker17: update resources {}
+worker18: kwargs {'ip': '10.0.0.19/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker18: update resources {}
+worker19: kwargs {'ip': '10.0.0.20/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker19: update resources {}
+worker20: kwargs {'ip': '10.0.0.21/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker20: update resources {}
+worker21: kwargs {'ip': '10.0.0.22/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '0', 'NVIDIA_VISIBLE_DEVICES': '0', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['0'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker21: update resources {}
+worker22: kwargs {'ip': '10.0.0.23/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker22: update resources {}
+worker23: kwargs {'ip': '10.0.0.24/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker23: update resources {}
+worker24: kwargs {'ip': '10.0.0.25/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker24: update resources {}
+worker25: kwargs {'ip': '10.0.0.26/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker25: update resources {}
+worker26: kwargs {'ip': '10.0.0.27/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker26: update resources {}
+worker27: kwargs {'ip': '10.0.0.28/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker27: update resources {}
+worker28: kwargs {'ip': '10.0.0.29/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker28: update resources {}
+worker29: kwargs {'ip': '10.0.0.30/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker29: update resources {}
+worker30: kwargs {'ip': '10.0.0.31/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker30: update resources {}
+worker31: kwargs {'ip': '10.0.0.32/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker31: update resources {}
+worker32: kwargs {'ip': '10.0.0.33/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker32: update resources {}
+worker33: kwargs {'ip': '10.0.0.34/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker33: update resources {}
+worker34: kwargs {'ip': '10.0.0.35/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker34: update resources {}
+worker35: kwargs {'ip': '10.0.0.36/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker35: update resources {}
+worker36: kwargs {'ip': '10.0.0.37/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker36: update resources {}
+worker37: kwargs {'ip': '10.0.0.38/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker37: update resources {}
+worker38: kwargs {'ip': '10.0.0.39/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker38: update resources {}
+worker39: kwargs {'ip': '10.0.0.40/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker39: update resources {}
+worker40: kwargs {'ip': '10.0.0.41/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker40: update resources {}
+worker41: kwargs {'ip': '10.0.0.42/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker41: update resources {}
+worker42: kwargs {'ip': '10.0.0.43/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '1', 'NVIDIA_VISIBLE_DEVICES': '1', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['1'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker42: update resources {}
+worker43: kwargs {'ip': '10.0.0.44/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker43: update resources {}
+worker44: kwargs {'ip': '10.0.0.45/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker44: update resources {}
+worker45: kwargs {'ip': '10.0.0.46/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker45: update resources {}
+worker46: kwargs {'ip': '10.0.0.47/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker46: update resources {}
+worker47: kwargs {'ip': '10.0.0.48/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker47: update resources {}
+worker48: kwargs {'ip': '10.0.0.49/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker48: update resources {}
+worker49: kwargs {'ip': '10.0.0.50/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker49: update resources {}
+worker50: kwargs {'ip': '10.0.0.51/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker50: update resources {}
+worker51: kwargs {'ip': '10.0.0.52/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker51: update resources {}
+worker52: kwargs {'ip': '10.0.0.53/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker52: update resources {}
+worker53: kwargs {'ip': '10.0.0.54/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker53: update resources {}
+worker54: kwargs {'ip': '10.0.0.55/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker54: update resources {}
+worker55: kwargs {'ip': '10.0.0.56/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker55: update resources {}
+worker56: kwargs {'ip': '10.0.0.57/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker56: update resources {}
+worker57: kwargs {'ip': '10.0.0.58/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker57: update resources {}
+worker58: kwargs {'ip': '10.0.0.59/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker58: update resources {}
+worker59: kwargs {'ip': '10.0.0.60/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker59: update resources {}
+worker60: kwargs {'ip': '10.0.0.61/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker60: update resources {}
+worker61: kwargs {'ip': '10.0.0.62/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker61: update resources {}
+worker62: kwargs {'ip': '10.0.0.63/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker62: update resources {}
+worker63: kwargs {'ip': '10.0.0.64/24', 'volumes': ['/home/dddddddd/FLOCK/algorithm/GossipFL:/workspace/GossipFL', '/dev/shm:/dev/shm', '/home/dddddddd/FLOCK/logs:/logs'], 'environment': {'PYTHONPATH': '/workspace', 'CUDA_VISIBLE_DEVICES': '2', 'NVIDIA_VISIBLE_DEVICES': '2', 'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility', 'GPU_INDEX': '0', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1', 'NUMEXPR_NUM_THREADS': '1'}, 'runtime': 'nvidia', 'device_requests': [{'Driver': '', 'Count': 0, 'DeviceIDs': ['2'], 'Capabilities': [['compute', 'utility']], 'Options': {}}], 'privileged': True}
+worker63: update resources {}
+Error setting worker0-eth0 up: [?2004l[?2004h Error setting worker1-eth0 up: [?2004l[?2004h Error setting worker2-eth0 up: [?2004l[?2004h Error setting worker3-eth0 up: [?2004l[?2004h Error setting worker4-eth0 up: [?2004l[?2004h Error setting worker5-eth0 up: [?2004l[?2004h Error setting worker6-eth0 up: [?2004l[?2004h Error setting worker7-eth0 up: [?2004l[?2004h Error setting worker8-eth0 up: [?2004l[?2004h Error setting worker9-eth0 up: [?2004l[?2004h Error setting worker10-eth0 up: [?2004l[?2004h Error setting worker11-eth0 up: [?2004l[?2004h Error setting worker12-eth0 up: [?2004l[?2004h Error setting worker13-eth0 up: [?2004l[?2004h Error setting worker14-eth0 up: [?2004l[?2004h Error setting worker15-eth0 up: [?2004l[?2004h Error setting worker16-eth0 up: [?2004l[?2004h Error setting worker17-eth0 up: [?2004l[?2004h Error setting worker18-eth0 up: [?2004l[?2004h Error setting worker19-eth0 up: [?2004l[?2004h Error setting worker20-eth0 up: [?2004l[?2004h Error setting worker21-eth0 up: [?2004l[?2004h Error setting worker22-eth0 up: [?2004l[?2004h Error setting worker23-eth0 up: [?2004l[?2004h Error setting worker24-eth0 up: [?2004l[?2004h Error setting worker25-eth0 up: [?2004l[?2004h Error setting worker26-eth0 up: [?2004l[?2004h Error setting worker27-eth0 up: [?2004l[?2004h Error setting worker28-eth0 up: [?2004l[?2004h Error setting worker29-eth0 up: [?2004l[?2004h Error setting worker30-eth0 up: [?2004l[?2004h Error setting worker31-eth0 up: [?2004l[?2004h Error setting worker32-eth0 up: [?2004l[?2004h Error setting worker33-eth0 up: [?2004l[?2004h Error setting worker34-eth0 up: [?2004l[?2004h Error setting worker35-eth0 up: [?2004l[?2004h Error setting worker36-eth0 up: [?2004l[?2004h Error setting worker37-eth0 up: [?2004l[?2004h Error setting worker38-eth0 up: [?2004l[?2004h Error setting worker39-eth0 up: [?2004l[?2004h Error setting worker40-eth0 up: [?2004l[?2004h Error setting worker41-eth0 up: [?2004l[?2004h Error setting worker42-eth0 up: [?2004l[?2004h Error setting worker43-eth0 up: [?2004l[?2004h Error setting worker44-eth0 up: [?2004l[?2004h Error setting worker45-eth0 up: [?2004l[?2004h Error setting worker46-eth0 up: [?2004l[?2004h Error setting worker47-eth0 up: [?2004l[?2004h Error setting worker48-eth0 up: [?2004l[?2004h Error setting worker49-eth0 up: [?2004l[?2004h Error setting worker50-eth0 up: [?2004l[?2004h Error setting worker51-eth0 up: [?2004l[?2004h Error setting worker52-eth0 up: [?2004l[?2004h Error setting worker53-eth0 up: [?2004l[?2004h Error setting worker54-eth0 up: [?2004l[?2004h Error setting worker55-eth0 up: [?2004l[?2004h Error setting worker56-eth0 up: [?2004l[?2004h Error setting worker57-eth0 up: [?2004l[?2004h Error setting worker58-eth0 up: [?2004l[?2004h Error setting worker59-eth0 up: [?2004l[?2004h Error setting worker60-eth0 up: [?2004l[?2004h Error setting worker61-eth0 up: [?2004l[?2004h Error setting worker62-eth0 up: [?2004l[?2004h Error setting worker63-eth0 up: [?2004l[?2004h *** Configuring hosts
+worker0 worker1 worker2 worker3 worker4 worker5 worker6 worker7 worker8 worker9 worker10 worker11 worker12 worker13 worker14 worker15 worker16 worker17 worker18 worker19 worker20 worker21 worker22 worker23 worker24 worker25 worker26 worker27 worker28 worker29 worker30 worker31 worker32 worker33 worker34 worker35 worker36 worker37 worker38 worker39 worker40 worker41 worker42 worker43 worker44 worker45 worker46 worker47 worker48 worker49 worker50 worker51 worker52 worker53 worker54 worker55 worker56 worker57 worker58 worker59 worker60 worker61 worker62 worker63 
+*** Starting controller
+
+*** Starting 21 switches
+s1 l1 l2 l3 l4 l5 l6 l7 l8 l9 l10 l11 l12 l13 l14 l15 l16 p1 p2 p3 p4 ...
+NWORKERS 64
+GPU 分配计划: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+worker0: kwargs {'ip': '10.0.0.1', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker1: kwargs {'ip': '10.0.0.2', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker2: kwargs {'ip': '10.0.0.3', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker3: kwargs {'ip': '10.0.0.4', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker4: kwargs {'ip': '10.0.0.5', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker5: kwargs {'ip': '10.0.0.6', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker6: kwargs {'ip': '10.0.0.7', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker7: kwargs {'ip': '10.0.0.8', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker8: kwargs {'ip': '10.0.0.9', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker9: kwargs {'ip': '10.0.0.10', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker10: kwargs {'ip': '10.0.0.11', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker11: kwargs {'ip': '10.0.0.12', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker12: kwargs {'ip': '10.0.0.13', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker13: kwargs {'ip': '10.0.0.14', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker14: kwargs {'ip': '10.0.0.15', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker15: kwargs {'ip': '10.0.0.16', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker16: kwargs {'ip': '10.0.0.17', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker17: kwargs {'ip': '10.0.0.18', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker18: kwargs {'ip': '10.0.0.19', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker19: kwargs {'ip': '10.0.0.20', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker20: kwargs {'ip': '10.0.0.21', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker21: kwargs {'ip': '10.0.0.22', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=0]}
+worker22: kwargs {'ip': '10.0.0.23', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker23: kwargs {'ip': '10.0.0.24', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker24: kwargs {'ip': '10.0.0.25', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker25: kwargs {'ip': '10.0.0.26', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker26: kwargs {'ip': '10.0.0.27', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker27: kwargs {'ip': '10.0.0.28', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker28: kwargs {'ip': '10.0.0.29', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker29: kwargs {'ip': '10.0.0.30', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker30: kwargs {'ip': '10.0.0.31', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker31: kwargs {'ip': '10.0.0.32', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker32: kwargs {'ip': '10.0.0.33', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker33: kwargs {'ip': '10.0.0.34', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker34: kwargs {'ip': '10.0.0.35', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker35: kwargs {'ip': '10.0.0.36', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker36: kwargs {'ip': '10.0.0.37', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker37: kwargs {'ip': '10.0.0.38', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker38: kwargs {'ip': '10.0.0.39', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker39: kwargs {'ip': '10.0.0.40', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker40: kwargs {'ip': '10.0.0.41', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker41: kwargs {'ip': '10.0.0.42', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker42: kwargs {'ip': '10.0.0.43', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=1]}
+worker43: kwargs {'ip': '10.0.0.44', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker44: kwargs {'ip': '10.0.0.45', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker45: kwargs {'ip': '10.0.0.46', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker46: kwargs {'ip': '10.0.0.47', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker47: kwargs {'ip': '10.0.0.48', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker48: kwargs {'ip': '10.0.0.49', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker49: kwargs {'ip': '10.0.0.50', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker50: kwargs {'ip': '10.0.0.51', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker51: kwargs {'ip': '10.0.0.52', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker52: kwargs {'ip': '10.0.0.53', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker53: kwargs {'ip': '10.0.0.54', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker54: kwargs {'ip': '10.0.0.55', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker55: kwargs {'ip': '10.0.0.56', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker56: kwargs {'ip': '10.0.0.57', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker57: kwargs {'ip': '10.0.0.58', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker58: kwargs {'ip': '10.0.0.59', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker59: kwargs {'ip': '10.0.0.60', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker60: kwargs {'ip': '10.0.0.61', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker61: kwargs {'ip': '10.0.0.62', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker62: kwargs {'ip': '10.0.0.63', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+worker63: kwargs {'ip': '10.0.0.64', 'volumes': [...], 'environment': {...}, 'device_requests': [DeviceIDs=2]}
+[debug] 使用 64 个节点的带宽矩阵：
+[[  0.    1.3   1.5 ...  12.   45.1  34.1]
+ [  1.3   0.    1.5 ...  42.2  14.8  28.7]
+ [  1.4   1.3   0.  ...  32.6  79.9  18.4]
+ ...
+ [ 23.8  11.2  47.6 ...   0.  140.9  44.1]
+ [ 11.6  48.   42.7 ...  71.3   0.   44.9]
+ [ 47.1  40.5  87.5 ...  36.8  26.1   0. ]]
+[?2004ldefault via 172.17.0.1 dev eth0 
+10.0.0.0/24 dev worker0-eth0 proto kernel scope link src 10.0.0.1 
+172.17.0.0/16 dev eth0 proto kernel scope link src 172.17.0.2 
+bash: brctl: command not found
+bash: ovs-vsctl: command not found
+[?2004h
+[?2004lPING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+64 bytes from 10.0.0.1: icmp_seq=1 ttl=64 time=0.040 ms
+
+--- 10.0.0.1 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.040/0.040/0.040/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=3.70 ms
+
+--- 10.0.0.2 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 3.695/3.695/3.695/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.3 (10.0.0.3) 56(84) bytes of data.
+64 bytes from 10.0.0.3: icmp_seq=1 ttl=64 time=1.12 ms
+
+--- 10.0.0.3 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.120/1.120/1.120/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.4 (10.0.0.4) 56(84) bytes of data.
+64 bytes from 10.0.0.4: icmp_seq=1 ttl=64 time=0.972 ms
+
+--- 10.0.0.4 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.972/0.972/0.972/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.5 (10.0.0.5) 56(84) bytes of data.
+64 bytes from 10.0.0.5: icmp_seq=1 ttl=64 time=2.04 ms
+
+--- 10.0.0.5 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.042/2.042/2.042/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.6 (10.0.0.6) 56(84) bytes of data.
+64 bytes from 10.0.0.6: icmp_seq=1 ttl=64 time=2.21 ms
+
+--- 10.0.0.6 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.209/2.209/2.209/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.7 (10.0.0.7) 56(84) bytes of data.
+64 bytes from 10.0.0.7: icmp_seq=1 ttl=64 time=2.02 ms
+
+--- 10.0.0.7 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.023/2.023/2.023/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.8 (10.0.0.8) 56(84) bytes of data.
+64 bytes from 10.0.0.8: icmp_seq=1 ttl=64 time=2.03 ms
+
+--- 10.0.0.8 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.030/2.030/2.030/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.9 (10.0.0.9) 56(84) bytes of data.
+64 bytes from 10.0.0.9: icmp_seq=1 ttl=64 time=1.94 ms
+
+--- 10.0.0.9 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.941/1.941/1.941/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.10 (10.0.0.10) 56(84) bytes of data.
+64 bytes from 10.0.0.10: icmp_seq=1 ttl=64 time=2.11 ms
+
+--- 10.0.0.10 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.108/2.108/2.108/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.11 (10.0.0.11) 56(84) bytes of data.
+64 bytes from 10.0.0.11: icmp_seq=1 ttl=64 time=3.01 ms
+
+--- 10.0.0.11 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 3.011/3.011/3.011/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.12 (10.0.0.12) 56(84) bytes of data.
+64 bytes from 10.0.0.12: icmp_seq=1 ttl=64 time=1.85 ms
+
+--- 10.0.0.12 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.853/1.853/1.853/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.13 (10.0.0.13) 56(84) bytes of data.
+64 bytes from 10.0.0.13: icmp_seq=1 ttl=64 time=2.27 ms
+
+--- 10.0.0.13 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.271/2.271/2.271/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.14 (10.0.0.14) 56(84) bytes of data.
+64 bytes from 10.0.0.14: icmp_seq=1 ttl=64 time=3.40 ms
+
+--- 10.0.0.14 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 3.397/3.397/3.397/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.15 (10.0.0.15) 56(84) bytes of data.
+64 bytes from 10.0.0.15: icmp_seq=1 ttl=64 time=3.17 ms
+
+--- 10.0.0.15 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 3.170/3.170/3.170/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.16 (10.0.0.16) 56(84) bytes of data.
+64 bytes from 10.0.0.16: icmp_seq=1 ttl=64 time=2.40 ms
+
+--- 10.0.0.16 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.395/2.395/2.395/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.17 (10.0.0.17) 56(84) bytes of data.
+64 bytes from 10.0.0.17: icmp_seq=1 ttl=64 time=1.69 ms
+
+--- 10.0.0.17 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.685/1.685/1.685/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.18 (10.0.0.18) 56(84) bytes of data.
+64 bytes from 10.0.0.18: icmp_seq=1 ttl=64 time=1.68 ms
+
+--- 10.0.0.18 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.677/1.677/1.677/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.19 (10.0.0.19) 56(84) bytes of data.
+64 bytes from 10.0.0.19: icmp_seq=1 ttl=64 time=1.79 ms
+
+--- 10.0.0.19 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.790/1.790/1.790/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.20 (10.0.0.20) 56(84) bytes of data.
+64 bytes from 10.0.0.20: icmp_seq=1 ttl=64 time=1.69 ms
+
+--- 10.0.0.20 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.693/1.693/1.693/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.21 (10.0.0.21) 56(84) bytes of data.
+64 bytes from 10.0.0.21: icmp_seq=1 ttl=64 time=1.92 ms
+
+--- 10.0.0.21 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.923/1.923/1.923/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.22 (10.0.0.22) 56(84) bytes of data.
+64 bytes from 10.0.0.22: icmp_seq=1 ttl=64 time=2.19 ms
+
+--- 10.0.0.22 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.191/2.191/2.191/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.23 (10.0.0.23) 56(84) bytes of data.
+64 bytes from 10.0.0.23: icmp_seq=1 ttl=64 time=2.30 ms
+
+--- 10.0.0.23 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.302/2.302/2.302/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.24 (10.0.0.24) 56(84) bytes of data.
+64 bytes from 10.0.0.24: icmp_seq=1 ttl=64 time=2.25 ms
+
+--- 10.0.0.24 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.254/2.254/2.254/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.25 (10.0.0.25) 56(84) bytes of data.
+64 bytes from 10.0.0.25: icmp_seq=1 ttl=64 time=2.41 ms
+
+--- 10.0.0.25 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.407/2.407/2.407/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.26 (10.0.0.26) 56(84) bytes of data.
+64 bytes from 10.0.0.26: icmp_seq=1 ttl=64 time=3.93 ms
+
+--- 10.0.0.26 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 3.930/3.930/3.930/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.27 (10.0.0.27) 56(84) bytes of data.
+64 bytes from 10.0.0.27: icmp_seq=1 ttl=64 time=2.28 ms
+
+--- 10.0.0.27 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.275/2.275/2.275/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.28 (10.0.0.28) 56(84) bytes of data.
+64 bytes from 10.0.0.28: icmp_seq=1 ttl=64 time=1.96 ms
+
+--- 10.0.0.28 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.962/1.962/1.962/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.29 (10.0.0.29) 56(84) bytes of data.
+64 bytes from 10.0.0.29: icmp_seq=1 ttl=64 time=2.47 ms
+
+--- 10.0.0.29 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.471/2.471/2.471/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.30 (10.0.0.30) 56(84) bytes of data.
+64 bytes from 10.0.0.30: icmp_seq=1 ttl=64 time=2.32 ms
+
+--- 10.0.0.30 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.320/2.320/2.320/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.31 (10.0.0.31) 56(84) bytes of data.
+64 bytes from 10.0.0.31: icmp_seq=1 ttl=64 time=2.38 ms
+
+--- 10.0.0.31 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.380/2.380/2.380/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.32 (10.0.0.32) 56(84) bytes of data.
+64 bytes from 10.0.0.32: icmp_seq=1 ttl=64 time=2.44 ms
+
+--- 10.0.0.32 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.442/2.442/2.442/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.33 (10.0.0.33) 56(84) bytes of data.
+64 bytes from 10.0.0.33: icmp_seq=1 ttl=64 time=1.70 ms
+
+--- 10.0.0.33 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.703/1.703/1.703/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.34 (10.0.0.34) 56(84) bytes of data.
+64 bytes from 10.0.0.34: icmp_seq=1 ttl=64 time=1.80 ms
+
+--- 10.0.0.34 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.797/1.797/1.797/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.35 (10.0.0.35) 56(84) bytes of data.
+64 bytes from 10.0.0.35: icmp_seq=1 ttl=64 time=1.56 ms
+
+--- 10.0.0.35 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.555/1.555/1.555/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.36 (10.0.0.36) 56(84) bytes of data.
+64 bytes from 10.0.0.36: icmp_seq=1 ttl=64 time=1.65 ms
+
+--- 10.0.0.36 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.651/1.651/1.651/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.37 (10.0.0.37) 56(84) bytes of data.
+64 bytes from 10.0.0.37: icmp_seq=1 ttl=64 time=2.04 ms
+
+--- 10.0.0.37 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.035/2.035/2.035/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.38 (10.0.0.38) 56(84) bytes of data.
+64 bytes from 10.0.0.38: icmp_seq=1 ttl=64 time=3.38 ms
+
+--- 10.0.0.38 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 3.375/3.375/3.375/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.39 (10.0.0.39) 56(84) bytes of data.
+64 bytes from 10.0.0.39: icmp_seq=1 ttl=64 time=1.97 ms
+
+--- 10.0.0.39 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.974/1.974/1.974/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.40 (10.0.0.40) 56(84) bytes of data.
+64 bytes from 10.0.0.40: icmp_seq=1 ttl=64 time=1.86 ms
+
+--- 10.0.0.40 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.861/1.861/1.861/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.41 (10.0.0.41) 56(84) bytes of data.
+64 bytes from 10.0.0.41: icmp_seq=1 ttl=64 time=2.11 ms
+
+--- 10.0.0.41 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.111/2.111/2.111/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.42 (10.0.0.42) 56(84) bytes of data.
+64 bytes from 10.0.0.42: icmp_seq=1 ttl=64 time=2.08 ms
+
+--- 10.0.0.42 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.077/2.077/2.077/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.43 (10.0.0.43) 56(84) bytes of data.
+64 bytes from 10.0.0.43: icmp_seq=1 ttl=64 time=2.23 ms
+
+--- 10.0.0.43 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.227/2.227/2.227/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.44 (10.0.0.44) 56(84) bytes of data.
+64 bytes from 10.0.0.44: icmp_seq=1 ttl=64 time=2.08 ms
+
+--- 10.0.0.44 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.077/2.077/2.077/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.45 (10.0.0.45) 56(84) bytes of data.
+64 bytes from 10.0.0.45: icmp_seq=1 ttl=64 time=2.54 ms
+
+--- 10.0.0.45 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.540/2.540/2.540/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.46 (10.0.0.46) 56(84) bytes of data.
+64 bytes from 10.0.0.46: icmp_seq=1 ttl=64 time=2.28 ms
+
+--- 10.0.0.46 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.280/2.280/2.280/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.47 (10.0.0.47) 56(84) bytes of data.
+64 bytes from 10.0.0.47: icmp_seq=1 ttl=64 time=2.35 ms
+
+--- 10.0.0.47 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.354/2.354/2.354/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.48 (10.0.0.48) 56(84) bytes of data.
+64 bytes from 10.0.0.48: icmp_seq=1 ttl=64 time=2.31 ms
+
+--- 10.0.0.48 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.309/2.309/2.309/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.49 (10.0.0.49) 56(84) bytes of data.
+64 bytes from 10.0.0.49: icmp_seq=1 ttl=64 time=2.03 ms
+
+--- 10.0.0.49 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.029/2.029/2.029/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.50 (10.0.0.50) 56(84) bytes of data.
+64 bytes from 10.0.0.50: icmp_seq=1 ttl=64 time=2.76 ms
+
+--- 10.0.0.50 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.755/2.755/2.755/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.51 (10.0.0.51) 56(84) bytes of data.
+64 bytes from 10.0.0.51: icmp_seq=1 ttl=64 time=1.76 ms
+
+--- 10.0.0.51 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.757/1.757/1.757/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.52 (10.0.0.52) 56(84) bytes of data.
+64 bytes from 10.0.0.52: icmp_seq=1 ttl=64 time=1.80 ms
+
+--- 10.0.0.52 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.796/1.796/1.796/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.53 (10.0.0.53) 56(84) bytes of data.
+64 bytes from 10.0.0.53: icmp_seq=1 ttl=64 time=1.87 ms
+
+--- 10.0.0.53 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.870/1.870/1.870/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.54 (10.0.0.54) 56(84) bytes of data.
+64 bytes from 10.0.0.54: icmp_seq=1 ttl=64 time=2.02 ms
+
+--- 10.0.0.54 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.024/2.024/2.024/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.55 (10.0.0.55) 56(84) bytes of data.
+64 bytes from 10.0.0.55: icmp_seq=1 ttl=64 time=1.97 ms
+
+--- 10.0.0.55 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.968/1.968/1.968/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.56 (10.0.0.56) 56(84) bytes of data.
+64 bytes from 10.0.0.56: icmp_seq=1 ttl=64 time=1.86 ms
+
+--- 10.0.0.56 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.863/1.863/1.863/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.57 (10.0.0.57) 56(84) bytes of data.
+64 bytes from 10.0.0.57: icmp_seq=1 ttl=64 time=2.24 ms
+
+--- 10.0.0.57 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.241/2.241/2.241/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.58 (10.0.0.58) 56(84) bytes of data.
+64 bytes from 10.0.0.58: icmp_seq=1 ttl=64 time=2.28 ms
+
+--- 10.0.0.58 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.276/2.276/2.276/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.59 (10.0.0.59) 56(84) bytes of data.
+64 bytes from 10.0.0.59: icmp_seq=1 ttl=64 time=2.50 ms
+
+--- 10.0.0.59 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.503/2.503/2.503/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.60 (10.0.0.60) 56(84) bytes of data.
+64 bytes from 10.0.0.60: icmp_seq=1 ttl=64 time=1.98 ms
+
+--- 10.0.0.60 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.976/1.976/1.976/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.61 (10.0.0.61) 56(84) bytes of data.
+64 bytes from 10.0.0.61: icmp_seq=1 ttl=64 time=3.49 ms
+
+--- 10.0.0.61 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 3.493/3.493/3.493/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.62 (10.0.0.62) 56(84) bytes of data.
+64 bytes from 10.0.0.62: icmp_seq=1 ttl=64 time=2.56 ms
+
+--- 10.0.0.62 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.562/2.562/2.562/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.63 (10.0.0.63) 56(84) bytes of data.
+64 bytes from 10.0.0.63: icmp_seq=1 ttl=64 time=2.28 ms
+
+--- 10.0.0.63 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.284/2.284/2.284/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[?2004lPING 10.0.0.64 (10.0.0.64) 56(84) bytes of data.
+64 bytes from 10.0.0.64: icmp_seq=1 ttl=64 time=3.12 ms
+
+--- 10.0.0.64 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 3.119/3.119/3.119/0.000 ms
+[?2004h
+[?2004lbash: nc: command not found
+[?2004h
+[debug] /dev/shm inside worker0:
+ [?2004lFilesystem      Size  Used Avail Use% Mounted on
+tmpfs           126G     0  126G   0% /dev/shm
+[?2004h
+[info] host log dir prepared: /home/dddddddd/FLOCK/logs/20260207_122317
+Launching MPI inside worker0:
+LOGDIR='/logs/20260207_122317'; mkdir -p "$LOGDIR"; mpirun --allow-run-as-root -np 64 --hostfile /tmp/mpi_hostfile.txt --mca pml ob1 --mca btl tcp,self,vader --mca btl_tcp_eager_limit 16384 --mca btl_tcp_max_send_size 131072 --mca btl_tcp_if_exclude lo,eth0 --mca oob_tcp_if_exclude lo,eth0 --mca oob_tcp_sndbuf 16384 --mca oob_tcp_rcvbuf 16384 --mca mpi_leave_pinned 0 --mca oob_tcp_disable_family IPv6 -mca routed direct -x OMP_NUM_THREADS=1 -x MKL_NUM_THREADS=1 -x OPENBLAS_NUM_THREADS=1 -x NUMEXPR_NUM_THREADS=1 -x PYTHONPATH=/workspace -x PATH python3 /workspace/GossipFL/experiments/mpi_based/main.py   entity hpml-hkbu project gossipfl  mode distributed  client_num_in_total 64  client_num_per_round 64  is_mobile 0  rank 0 client_index 0  gpu_server_num 0 gpu_util_file None gpu_util_key None  gpu_util_parse localhost:22,21,21 cluster_name gpu3_64_docker  gpu_index 0  task classification  dataset cifar10 data_dir /workspace/GossipFL/data/cifar10  partition_method noniid-#label2 partition_alpha 0.2 if_timm_dataset False  data_load_num_workers 0 an4_audio_path no lstm_num_steps 35 lstm_clip_grad True  lstm_clip_grad_thres 0.25 lstm_embedding_dim  8   lstm_hidden_size  256   data_sampler Random imbalance_beta 0.9999  imbalance_beta_min 0.8 imbalance_beta_decay_rate 0.992 imbalance_beta_decay_type global_round    data_transform  NormalTransform    checkpoint_save False  checkpoint_save_model False checkpoint_save_optim False  checkpoint_save_train_metric False checkpoint_save_test_metric False  checkpoint_root_path ./checkpoints/ checkpoint_epoch_list [10,20,30]  checkpoint_file_name_save_list None  corr_layers_list None  corr_dataset_len 100  model  resnet20   pretrained False   pretrained_dir  no   group_norm_num  2   loss_fn  CrossEntropy  imbalance_loss_reweight False   trainer_type  normal    algorithm CHOCO_SGD  psgd_exchange model  psgd_grad_sum  False psgd_grad_debug  False   if_get_diff  False   exchange_model  True local_round_num  4   consensus_stepsize  0.5  bandwidth_type  real  B_thres  0.0  T_thres  3  local_rank  0  init_method  tcp://127.0.0.1:23456  FP16  False logging_gradients  False merge_threshold  0  hvd_origin  False  nsteps_update  1 hvd_momentum_correction  0  hvd_is_sparse  False fedprox_mu  0.1   compression randomk  compress_ratio 0.00  quantize_level 32  is_biased 0   epochs 200   comm_round 200 client_optimizer sgd  server_optimizer no batch_size 32  lr 0.1  wd 0.0001   momentum  0.9  nesterov False clip_grad False  sched no  lr_decay_rate 0.992  step_size 1 lr_milestones [30,60]  lr_T_max 10  lr_eta_min 0  warmup_epochs 0    frequency_of_the_test 1  Failure_chance None level INFO ci 0 seed 0  > "$LOGDIR/mpi_train.log" 2>&1 &

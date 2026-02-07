@@ -1,0 +1,4 @@
+# config.yaml
+world_size: 4
+compress_ratio: 0.0
+bootstrap_addr: "tcp://<host>:<port>"
