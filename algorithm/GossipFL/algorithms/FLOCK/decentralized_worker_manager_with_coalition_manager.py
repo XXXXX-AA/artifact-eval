@@ -13,7 +13,7 @@ def mem_mb():
 
 def cpu_mem_str(tag=""):
     try:
-        cpu = proc.cpu_percent(interval=None)  # NOTE: comment translated from Chinese
+        cpu = proc.cpu_percent(interval=None)  
     except Exception:
         cpu = -1.0
     rss, cuda = mem_mb()
@@ -66,14 +66,14 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
         self.sync_receive_all_event = threading.Event()
         self.complete_aggregation_event = threading.Event()
 
-        # NOTE: comment translated from Chinese
+        
         self.msg_received = 0
         self._rx_queue: Queue = Queue(maxsize=3) #2
         self._rx_stop = threading.Event()
         self._rx_thread = threading.Thread(
             name=f"rx-io-{rank}", target=self._rx_loop, daemon=True
         )
-        # NOTE: comment translated from Chinese
+        
         self.training_thread = threading.Thread(
             name="training", target=self.run_sync, daemon=True
         )
@@ -110,33 +110,33 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
         self.ifStop = False
         self.round = 0  # Current round index
 
-        # NOTE: comment translated from Chinese
-        self.bandwidth = generate_bandwidth(args)  # NOTE: comment translated from Chinese
+        
+        self.bandwidth = generate_bandwidth(args)  
         # if self.worker_index == 0:
         # logging.info(f"[rank {self.worker_index}] Bandwidth matrix:\n{self.bandwidth}")
         bw_raw = self.bandwidth[self.worker_index]     # 1-D
-        bw_log_max = np.log1p(bw_raw).max() or 1.0  # NOTE: comment translated from Chinese
+        bw_log_max = np.log1p(bw_raw).max() or 1.0  
         self.bw_norm = np.log1p(bw_raw) / bw_log_max   # 0-1
         self.outs = self.my_get_out_neighbor_idx_list(self.worker_index)
         
         self.coalition_manager = CoalitionManager(args, self.worker_index, size, self.bandwidth, self.bw_norm, self.outs, self.epochs, self.worker.num_iterations)
         self.coalition_manager.set_active_coalition_join_callback(self.send_active_coalition_join_notification)
-        # NOTE: comment translated from Chinese
-        # NOTE: comment translated from Chinese
+        
+        
         # # if self.worker_index == 0:
         # # logging.info(f"[rank {self.worker_index}] Bandwidth matrix:\n{self.bandwidth}")
         # bw_raw = self.bandwidth[self.worker_index]     # 1-D
-        # NOTE: comment translated from Chinese
+        
         # self.bw_norm = np.log1p(bw_raw) / bw_log_max   # 0-1
         # self.outs = self.my_get_out_neighbor_idx_list(self.worker_index)
-        # NOTE: comment translated from Chinese
-        # NOTE: comment translated from Chinese
+        
+        
         # self.util_eps = 0.3                            # ε‑greedy
         # self.lambda_bw0 = 3.0
         # self.lambda_sim0 = 0.8
         # self.lambda_dist = 0.05
         # self.time_const = 1.0 * self.epochs
-        # NOTE: comment translated from Chinese
+        
         # self.util_threshold = 0.0
         # self.target_good_ratio = 0.3
         # self.tolerance_ratio = 0.05
@@ -144,12 +144,12 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
         # self.time_window = int(np.ceil(3 * np.log(size)))
         # self.last_chosen_round = np.zeros(size, dtype=int)
 
-        # NOTE: comment translated from Chinese
+        
         # self.good_set = set()
         # self.bad_set = set(range(size))
 
-        # NOTE: comment translated from Chinese
-        # NOTE: comment translated from Chinese
+        
+        
 
         # compression part
         self.compression = args.compression
@@ -159,7 +159,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
                                             quantize_level=args.quantize_level,
                                             is_biased=(args.is_biased == 1),)
 
-        # NOTE: comment translated from Chinese
+        
         self.worker.set_rx_compressor(self.compressor)
         self.worker.set_eval_callback(self._on_neighbor_eval)
         self.finish_round = self.epochs * self.worker.num_iterations-1
@@ -185,7 +185,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
         super().run()
 
     def register_message_receive_handlers(self):
-        # NOTE: comment translated from Chinese
+        
         # self.register_message_receive_handler(MyMessage.MSG_TYPE_CLUSTER_INFO,
         #                                       self.handle_msg_cluster_info)
         self.register_message_receive_handler(MyMessage.MSG_TYPE_SEND_MSG_TO_NEIGHBOR,
@@ -217,7 +217,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
         # self._rx_queue.put(msg_params, block=True, timeout=0.5)
         self._rx_queue.put(msg_params, block=True)
        except Full:
-           # NOTE: comment translated from Chinese
+           
            try:
                sender_id = msg_params.get(MyMessage.MSG_ARG_KEY_SENDER)
                sender_round = msg_params.get(MyMessage.MSG_ARG_KEY_LOCAL_ROUND)
@@ -226,7 +226,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
                    self.worker.add_result_for_flock(sender_id, sender_round, msg_params)
            except Exception:
                logging.exception("fallback add_result_for_flock failed")
-       # NOTE: comment translated from Chinese
+       
        return                                    
 
     def handle_msg_with_coalition_info(self, msg_params):
@@ -296,7 +296,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
                     if self.worker._use_cuda and src.is_cuda:
                         # Store GPU param snapshot for cos sim (no copy, just reference)
                         # self.worker.step_param_gpu = src.detach()
-                        new_snap = src.detach()  # NOTE: comment translated from Chinese
+                        new_snap = src.detach()  
                         old = self.worker.step_param_gpu
                         self.worker.step_param_gpu = new_snap
                         del old 
@@ -437,7 +437,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
             src = flatten_params.buffer
             dst = self.worker.step_param_cpu
             if self.worker._use_cuda and src.is_cuda:
-                new_snap = src.detach()  # NOTE: comment translated from Chinese
+                new_snap = src.detach()  
                 old = self.worker.step_param_gpu
                 self.worker.step_param_gpu = new_snap
                 del old 
@@ -557,12 +557,12 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
             self.finish()
 
     # ------------------------------------------------------------------
-    # NOTE: comment translated from Chinese
+    
     # ------------------------------------------------------------------
     def _update_neighbor_utility(self, nbr: int, cos_sim: float, staleness: int):
         # update_time = time.time()
         """更新 util_cache，然后自调 util_threshold，使 good_set 占比≈30%。"""
-        # NOTE: comment translated from Chinese
+        
         bw   = self.bw_norm[nbr]
 
         phase1_round = self.epochs * self.worker.num_iterations * self.PHASE1
@@ -572,34 +572,34 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
             lam_sim = 0
         else:
             t_adj    = self.round - phase1_round
-            lam_bw  = max(self.lambda_bw0 * np.exp(- t_adj / self.time_const), 0.01 * self.lambda_bw0)  # NOTE: comment translated from Chinese
+            lam_bw  = max(self.lambda_bw0 * np.exp(- t_adj / self.time_const), 0.01 * self.lambda_bw0)  
             lam_sim = self.lambda_sim0 * (1 - np.exp(- t_adj / self.time_const))
             # lam_bw = 0.5
             # lam_sim = 0.5
         util    = lam_bw * bw + lam_sim * cos_sim - self.lambda_dist * (1-staleness)
         self.util_cache[nbr] = (1 - self.util_alpha) * self.util_cache[nbr] + self.util_alpha * util
-        # NOTE: comment translated from Chinese
+        
         #     logging.info(f"[Round {self.round}] Worker {self.worker_index} update neighbor {nbr}: "
         #              f"util={self.util_cache[nbr]:.4f}, bw={bw:.3f}, sim={cos_sim:.3f}, stale={staleness}"
         #              f", lam_bw={lam_bw:.4f}, lam_sim={lam_sim:.4f}"
         #              f", lam_bw * bw={lam_bw * bw:.4f}, lam_sim * cos_sim={lam_sim * cos_sim:.4f},self.lambda_dist * (1-staleness)={self.lambda_dist * (1-staleness):.2f}")
 
-        # NOTE: comment translated from Chinese
+        
         if self.util_cache[nbr] >= self.util_threshold:
             self.good_set.add(nbr); self.bad_set.discard(nbr)
         else:
             self.bad_set.add(nbr);  self.good_set.discard(nbr)
 
-        # NOTE: comment translated from Chinese
-        outs = self.outs  # NOTE: comment translated from Chinese
+        
+        outs = self.outs  
         if outs:
             good_ratio = len(self.good_set.intersection(outs)) / len(outs)
             if good_ratio < self.target_good_ratio - self.tolerance_ratio:
-                self.util_threshold -= self.adjust_step  # NOTE: comment translated from Chinese
+                self.util_threshold -= self.adjust_step  
             elif good_ratio > self.target_good_ratio + self.tolerance_ratio:
-                self.util_threshold += self.adjust_step  # NOTE: comment translated from Chinese
+                self.util_threshold += self.adjust_step  
 
-            # NOTE: comment translated from Chinese
+            
             for n in outs:
                 if self.util_cache[n] >= self.util_threshold:
                     self.good_set.add(n); self.bad_set.discard(n)
@@ -609,7 +609,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
         # logging.info("update_neighbor_utility time %.4f" % update_time)
 
 
-    def _choose_neighbor(self):  # NOTE: comment translated from Chinese
+    def _choose_neighbor(self):  
         choose_time = time.time()
         """选择一个邻居进行发送。
         · 阶段①(前 15%)  : 纯均匀随机  —— 充分探索 / 快速扩散
@@ -619,7 +619,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
         outs  = self.outs
         cur_r = self.round
 
-        # NOTE: comment translated from Chinese
+        
         overdue = [n for n in outs if cur_r - self.last_chosen_round[n] >= self.time_window]
         if overdue:
             choice = np.random.choice(overdue)
@@ -629,18 +629,18 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
             #     logging.debug(f"[Round {self.round}] Overdue....Worker 5 chose neighbor {choice} ")
             return int(choice)
 
-        # NOTE: comment translated from Chinese
+        
         total_rounds = self.epochs * self.worker.num_iterations + 1e-8
         progress = cur_r / total_rounds
 
-        PHASE1 = self.PHASE1  # NOTE: comment translated from Chinese
-        PHASE3 = self.PHASE3  # NOTE: comment translated from Chinese
+        PHASE1 = self.PHASE1  
+        PHASE3 = self.PHASE3  
 
-        # NOTE: comment translated from Chinese
+        
         if progress < PHASE1:
             # if self.worker_index == 5:
             #     logging.info(f"[Round {self.round}] Worker {self.worker_index} in Phase 1, self.util_cache: {self.util_cache[self.good_set]}")
-            logits = self.bw_norm[outs]  # NOTE: comment translated from Chinese
+            logits = self.bw_norm[outs]  
             probs  = np.exp(logits - logits.max())
             probs  = probs / probs.sum()
             choice = np.random.choice(outs, p=probs)
@@ -658,11 +658,11 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
         # return int(choice)
 
 
-        # NOTE: comment translated from Chinese
+        
         good_idx = [n for n in outs if n in self.good_set]
         bad_idx  = [n for n in outs if n in self.bad_set]
 
-        # NOTE: comment translated from Chinese
+        
         if progress >= PHASE3 and good_idx:
             eps     = 0.05
             # logits = self.util_cache[good_idx] - np.max(self.util_cache[good_idx])
@@ -676,8 +676,8 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
         # if self.round == self.epochs * self.worker.num_iterations * self.PHASE1:
         #     if self.worker_index == 5:
         #         logging.info(f"[Round {self.round}] Worker {self.worker_index} in Phase 2, self.util_cache: {self.util_cache[good_idx]}")
-        # NOTE: comment translated from Chinese
-        eps     = self.util_eps  # NOTE: comment translated from Chinese
+        
+        eps     = self.util_eps  
         prob_g, prob_b = np.array([]), np.array([])
 
         if good_idx:
@@ -704,7 +704,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
         """
         assert hasattr(self, "bandwidth"), "请先生成并归一化 self.bandwidth"
         row = self.bandwidth[worker_idx]
-        # NOTE: comment translated from Chinese
+        
         outs = [j for j, bw in enumerate(row) if (j != worker_idx) and (bw > 0)]
         return outs
 
@@ -730,7 +730,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
                 sender_id = msg_params.get(MyMessage.MSG_ARG_KEY_SENDER)
                 sender_round = msg_params.get(MyMessage.MSG_ARG_KEY_LOCAL_ROUND)
 
-                # NOTE: comment translated from Chinese
+                
                 self._decode_tokens.acquire()
 
                 def _decode_job(item, _sender_id, _sender_round):
@@ -746,18 +746,18 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
 
                     enqueued = False
                     try:
-                        # NOTE: comment translated from Chinese
+                        
                         q_vals, q_idx = self.worker._rx_comp.decode_sparse_msg(item, self.worker._shapes)  
 
-                        # NOTE: comment translated from Chinese
+                        
                         if (q_vals is None) or (q_idx is None) or (q_vals.numel() == 0):
                             return
 
-                        # NOTE: comment translated from Chinese
+                        
                         q_vals = q_vals.contiguous()
                         q_idx  = q_idx.contiguous()
 
-                        # NOTE: comment translated from Chinese
+                        
                         decoded = {
                             MyMessage.MSG_ARG_KEY_SENDER: _sender_id,
                             MyMessage.MSG_ARG_KEY_LOCAL_ROUND: _sender_round,
@@ -766,7 +766,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
                             "__q_indices": q_idx,
                         }
 
-                        # NOTE: comment translated from Chinese
+                        
                         self._decoded_queue.put(decoded)
                         enqueued = True
                         # if (self.msg_received <= 10)  and self.worker_index == 0:
@@ -775,20 +775,20 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
                     except Exception:
                         logging.exception("decode_job failed")
                     finally:
-                        # NOTE: comment translated from Chinese
+                        
                         try:
                             if isinstance(item, dict):
                                 item.clear()
                         except Exception:
                             pass
-                        # NOTE: comment translated from Chinese
+                        
                         if not enqueued:
                             try:
                                 self._decode_tokens.release()
                             except Exception:
                                 pass
 
-                # NOTE: comment translated from Chinese
+                
                 self._decode_pool.submit(_decode_job, msg_params, sender_id, sender_round)
 
                 # add_time = 0.0
@@ -825,7 +825,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
             try:
                 sender_id = msg.get(MyMessage.MSG_ARG_KEY_SENDER)
                 sender_round = msg.get(MyMessage.MSG_ARG_KEY_LOCAL_ROUND)
-                # NOTE: comment translated from Chinese
+                
                 with get_lock(self.neighbor_transfer_lock):
                     t0 = time.time()
                     self.worker.add_result_for_flock(sender_id, sender_round, msg)
@@ -836,12 +836,12 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
             except Exception:
                 logging.exception("agg-io thread failed in add_result_for_flock")
             finally:
-                # NOTE: comment translated from Chinese
+                
                 try:
                     self._decode_tokens.release()
                 except Exception:
                     pass
-                # NOTE: comment translated from Chinese
+                
                 try:
                     if isinstance(msg, dict):
                         msg.pop("__q_values", None)
@@ -861,17 +861,17 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
         ts_unix = int(t) 
         msec   = int((t - ts_unix) * 1000)
         asctime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(t)) + f",{msec:03d}"
-        # NOTE: comment translated from Chinese
+        
         if torch.cuda.is_available():
             torch.cuda.set_device(self.worker.device)
-            torch.cuda.synchronize(self.worker.device)  # NOTE: comment translated from Chinese
+            torch.cuda.synchronize(self.worker.device)  
 
-        # NOTE: comment translated from Chinese
+        
         snap_cpu = flatten_buf.buffer.detach().cpu().clone()
         del flatten_buf
         gc.collect()
 
-        # NOTE: comment translated from Chinese
+        
         meta = {
             "asctime": asctime,
             "epoch": epoch,
@@ -881,9 +881,9 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
             "worker": int(self.worker_index),
         }
 
-        # NOTE: comment translated from Chinese
+        
         ts = self.snapshot_writer.enqueue(epoch, snap_cpu, meta)
-        # NOTE: comment translated from Chinese
+        
         return f"./param_snapshots/{self.worker_index}/ep{epoch:04d}_{ts}"
 
     @torch.no_grad()
@@ -894,11 +894,11 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
         """
         import os, re, glob, torch
 
-        # NOTE: comment translated from Chinese
+        
         snap_dir = f"./param_snapshots/{self.worker_index}"
         paths = glob.glob(os.path.join(snap_dir, pattern))
 
-        # NOTE: comment translated from Chinese
+        
         def _parse_epoch(p):
             m = re.search(r"ep(\d+)_", os.path.basename(p))
             # logging.info(f"[replay] _parse_epoch {p} m={m}")
@@ -911,12 +911,12 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
 
         
 
-        # NOTE: comment translated from Chinese
+        
         use_cuda = torch.cuda.is_available()
         if use_cuda:
             torch.cuda.set_device(self.worker.device)
 
-        # NOTE: comment translated from Chinese
+        
         with torch.no_grad():
             for p in paths:
                 # logging.info(f"[replay] found {p} snapshots under: {snap_dir}")
@@ -924,7 +924,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
                 
                 meta_path = os.path.splitext(p)[0] + ".json"
                 snap_asctime = "N/A"
-                # NOTE: comment translated from Chinese
+                
                 if os.path.exists(meta_path):
                     try:
                         with open(meta_path, "r") as f:
@@ -933,16 +933,16 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
                     except Exception as e:
                         logging.warning(f"[replay] meta read failed: {meta_path}, err={e}")
 
-                # NOTE: comment translated from Chinese
+                
                 # sd_flat_cpu = torch.load(p, map_location="cpu")
                 try:
                     sd_flat_cpu = torch.load(p, map_location="cpu", weights_only=True)
                     
                 except TypeError:
-                    sd_flat_cpu = torch.load(p, map_location="cpu")  # NOTE: comment translated from Chinese
+                    sd_flat_cpu = torch.load(p, map_location="cpu")  
 
-                # NOTE: comment translated from Chinese
-                # NOTE: comment translated from Chinese
+                
+                
                 
                 buf = TensorBuffer(params)
                 
@@ -951,7 +951,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
                 del sd_flat_cpu
                 buf.unpack(params)
 
-                # NOTE: comment translated from Chinese
+                
                 if use_cuda:
                     for p in params:
                         if hasattr(p, "data") and hasattr(p.data, "to"):
@@ -959,7 +959,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
                 # if use_cuda:
                 #     params.to(self.worker.device)
 
-                # NOTE: comment translated from Chinese
+                
                 self.test_and_log(epoch,snap_asctime)
 
 

@@ -32,7 +32,7 @@ class MyMessage(object):
     MSG_ARG_KEY_TRAIN_METRICS = "train_metrics"
     MSG_ARG_KEY_TEST_METRICS = "test_metrics"
 
-    MSG_TYPE_CLUSTER_INFO      = 2001  # NOTE: comment translated from Chinese
+    MSG_TYPE_CLUSTER_INFO      = 2001  
     MSG_ARG_KEY_LOSS_DECREASED = "loss_decreased"
     MSG_ARG_KEY_CLUSTER_NAME    = "cluster_name"
     MSG_ARG_KEY_CLUSTER_NEIGHBORS = "cluster_neighbors"
@@ -41,9 +41,9 @@ class MyMessage(object):
 
     MSG_ARG_KEY_SELECTED_SHAPES = "selected_shapes"
 
-    MSG_ARG_KEY_PROJ = "proj"  # NOTE: comment translated from Chinese
+    MSG_ARG_KEY_PROJ = "proj"  
 
-    # NOTE: comment translated from Chinese
+    
 
     MSG_TYPE_COAL_INFO = "coal_info"
 
@@ -51,4 +51,4 @@ class MyMessage(object):
     MSG_ARG_KEY_COALITION_VERSION = "coalition_version"
 
     
-    MSG_ARG_KEY_DELTAS = "coal_deltas"  # NOTE: comment translated from Chinese
+    MSG_ARG_KEY_DELTAS = "coal_deltas"  

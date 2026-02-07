@@ -55,17 +55,17 @@ class DecentralizedWorker(BaseDecentralizedWorker):
         # =========================
         if not self._use_cuda:
 
-            # NOTE: comment translated from Chinese
+            
             self._rx_lock = threading.Lock()
             cpu_buf = torch.zeros(self._total_len, dtype=torch.float32, device="cpu")
-            self._rx_active = cpu_buf  # NOTE: comment translated from Chinese
+            self._rx_active = cpu_buf  
             self._rx_standby = torch.zeros_like(cpu_buf)
 
             w_buf = torch.zeros(self._total_len, dtype=torch.float32, device="cpu")
-            self.neighbor_total_weight_active = w_buf  # NOTE: comment translated from Chinese
+            self.neighbor_total_weight_active = w_buf  
             self.neighbor_total_weight_standby = torch.zeros_like(w_buf)
         else:
-            # NOTE: comment translated from Chinese
+            
             self._rx_lock = None
             self._rx_active = None
             self._rx_standby = None
@@ -82,27 +82,27 @@ class DecentralizedWorker(BaseDecentralizedWorker):
             self._pin_idx = None   # CPU pinned int64 buffer for indices
             self._pin_val = None   # CPU pinned float32 buffer for values
 
-            # NOTE: comment translated from Chinese
-            # NOTE: comment translated from Chinese
+            
+            
             try:
                 get_range = getattr(torch.cuda, "get_stream_priority_range", None)
-                torch.cuda.set_device(self.device)  # NOTE: comment translated from Chinese
+                torch.cuda.set_device(self.device)  
                 if callable(get_range):
-                    low, high = get_range()  # NOTE: comment translated from Chinese
-                    accum_pri = low  # NOTE: comment translated from Chinese
+                    low, high = get_range()  
+                    accum_pri = low  
                     self._accum_stream = torch.cuda.Stream(priority=accum_pri)
                     # logging.info(f"Worker {self.worker_index} stream device: {self._accum_stream.device}, 111priority range: ({low}, {high}), accum_pri: {accum_pri}")
                 else:
-                    # NOTE: comment translated from Chinese
+                    
                     try:
-                        self._accum_stream = torch.cuda.Stream(priority=0)  # NOTE: comment translated from Chinese
+                        self._accum_stream = torch.cuda.Stream(priority=0)  
                         # logging.info(f"Worker {self.worker_index} stream device: {self._accum_stream.device}, 222priority range: unknown, accum_pri: 0")
                     except TypeError:
-                        # NOTE: comment translated from Chinese
+                        
                         self._accum_stream = torch.cuda.Stream()
                         # logging.info(f"Worker {self.worker_index} stream device: {self._accum_stream.device}, 333priority range: unknown, accum_pri: default")
             except RuntimeError:
-                # NOTE: comment translated from Chinese
+                
                 self._accum_stream = torch.cuda.Stream()
             
             # logging.info(f"Worker {self.worker_index} stream device: {self._accum_stream.device}")
@@ -111,13 +111,13 @@ class DecentralizedWorker(BaseDecentralizedWorker):
             # self._accum_stream = torch.cuda.Stream(priority=low)
             self._accum_lock = threading.Lock()
             self._accum_evt = torch.cuda.Event(blocking=False)
-            self._evt_recorded = False  # NOTE: comment translated from Chinese
+            self._evt_recorded = False  
 
-            # NOTE: comment translated from Chinese
-            self._gpu_buf_hot = None  # NOTE: comment translated from Chinese
-            self._gpu_w_hot = None  # NOTE: comment translated from Chinese
+            
+            self._gpu_buf_hot = None  
+            self._gpu_w_hot = None  
 
-            self._gpu_buf_ready = None  # NOTE: comment translated from Chinese
+            self._gpu_buf_ready = None  
             self._gpu_w_ready = None
             
             self._ones_cache = None  # GPU only
@@ -135,10 +135,10 @@ class DecentralizedWorker(BaseDecentralizedWorker):
         self.stat_batch_swaps = 0
         self.stat_batch_merge_h2d_time = 0.0
 
-        # NOTE: comment translated from Chinese
+        
         self._state_lock = threading.Lock()
-        self._payload_ready = False  # NOTE: comment translated from Chinese
-        self._agg_in_progress = False  # NOTE: comment translated from Chinese
+        self._payload_ready = False  
+        self._agg_in_progress = False  
 
 
     def get_sim_min_max(self,args):
@@ -240,7 +240,7 @@ class DecentralizedWorker(BaseDecentralizedWorker):
             # idx_cpu = q_indices.to(dtype=torch.long)
             idx_cpu = q_indices.to(dtype=torch.long, copy=False)
             val_cpu = q_values.to(dtype=torch.float32, copy=False)
-            # NOTE: comment translated from Chinese
+            
             idx_pin = self._stage_to_pinned(idx_cpu, 'idx', torch.long)
             val_pin = self._stage_to_pinned(val_cpu, 'val', torch.float32)
 
@@ -249,7 +249,7 @@ class DecentralizedWorker(BaseDecentralizedWorker):
             if self._use_cuda and (self._total_len > 0):
                 torch.cuda.set_device(self.device)
 
-                # NOTE: comment translated from Chinese
+                
                 if not hasattr(self, "_h2d_stream"):
                     self._h2d_stream = torch.cuda.Stream(device=self.device)
                 if not hasattr(self, "_h2d_evt"):
@@ -258,15 +258,15 @@ class DecentralizedWorker(BaseDecentralizedWorker):
                 with torch.cuda.stream(self._h2d_stream):
                     idx_gpu = idx_pin.to(self.device, non_blocking=True)
                     val_gpu = val_pin.to(self.device, non_blocking=True)
-                    self._h2d_evt.record(self._h2d_stream)  # NOTE: comment translated from Chinese
+                    self._h2d_evt.record(self._h2d_stream)  
                     h2d_end = time.time()
                     h2d_end1 = h2d_end - add_start
                     # if self.worker_index == 0 and (self.stat_rx_msgs % 500) == 0:
                     #     logging.info("add_result_for_flock D2H time %.4f with local round %d" % (h2d_end1, self.stat_rx_msgs))
 
-                # NOTE: comment translated from Chinese
+                
                 self._accum_stream.wait_event(self._h2d_evt)
-                # NOTE: comment translated from Chinese
+                
                 cos_sim = 0.0
                 with self._accum_lock:
 
@@ -274,7 +274,7 @@ class DecentralizedWorker(BaseDecentralizedWorker):
                         self._gpu_buf_hot = torch.zeros(self._total_len, dtype=torch.float32, device=self.device)
                         self._gpu_w_hot = torch.zeros_like(self._gpu_buf_hot)
                         self._ones_cache = torch.ones(len(idx_cpu), dtype=torch.float32, device=self.device)
-                        # NOTE: comment translated from Chinese
+                        
                         self._gpu_buf_ready = None
                         self._gpu_w_ready = None
 
@@ -313,7 +313,7 @@ class DecentralizedWorker(BaseDecentralizedWorker):
                         # if self.worker_index == 0 and (self.stat_rx_msgs % 500) == 0:
                         #     logging.info("add_result_for_flock index_add time %.4f with local round %d" % (add_end1, self.stat_rx_msgs))
 
-                        # NOTE: comment translated from Chinese
+                        
                         self._accum_evt.record(self._accum_stream)
                         self._evt_recorded = True
                         record_end = time.time()
@@ -326,19 +326,19 @@ class DecentralizedWorker(BaseDecentralizedWorker):
                     self.number_of_neighbor_param_received += 1
                     self.stat_rx_msgs += 1
 
-                    # NOTE: comment translated from Chinese
+                    
                     # if not hasattr(self, "_accum_done_evt"):
                     #     self._accum_done_evt = torch.cuda.Event(blocking=False)
                     # self._accum_done_evt.record(self._accum_stream)
 
-                    # NOTE: comment translated from Chinese
+                    
                 with self._state_lock:
                     self._payload_ready = True
 
 
             # ------------------- CPU path -------------------
             else:
-                # NOTE: comment translated from Chinese
+                
                 cos_sim = 0.0
                 if (self.step_param_cpu is not None) and (self.step_param_cpu.numel() == self._total_len):
                     local_slice = self.step_param_cpu[idx_cpu]
@@ -352,7 +352,7 @@ class DecentralizedWorker(BaseDecentralizedWorker):
                         # cos_sim = float((cs - 0.9) / (1.0 - 0.9 + EPS))
                 self.stat_sim_computed += 1
 
-                # NOTE: comment translated from Chinese
+                
                 with self._rx_lock:
                     if self.number_of_neighbor_param_received == 0:
                         self._rx_active.zero_()
@@ -363,12 +363,12 @@ class DecentralizedWorker(BaseDecentralizedWorker):
                     self.number_of_neighbor_param_received += 1
                     self.stat_rx_msgs += 1
 
-                # NOTE: comment translated from Chinese
+                
                 with self._state_lock:
                     self._payload_ready = True
 
 
-            # NOTE: comment translated from Chinese
+            
             update_utility_start = time.time()
             if callable(self._eval_cb):
                 try:
@@ -401,7 +401,7 @@ class DecentralizedWorker(BaseDecentralizedWorker):
         """
         self.aggregate_cnt += 1
 
-        # NOTE: comment translated from Chinese
+        
         flatten_buf = sync_buffer["flatten_params"].buffer
         if flatten_buf.numel() != self._total_len:
             logging.warning("aggregate_for_flock: flatten size mismatch.")
@@ -417,7 +417,7 @@ class DecentralizedWorker(BaseDecentralizedWorker):
             #     self.worker_index, payload_now, self.number_of_neighbor_param_received, self.aggregate_cnt
             # ))
         
-        # NOTE: comment translated from Chinese
+        
         if not payload_now:
             logging.info("aggregate_for_flock with payload_not ready")
             # sync_buffer["flatten_params"].buffer.div_(float(self.neighbor_weight))
@@ -431,38 +431,38 @@ class DecentralizedWorker(BaseDecentralizedWorker):
             # if self._accum_stream is not None:
             #     self._accum_stream.synchronize()
 
-            # NOTE: comment translated from Chinese
+            
             with self._accum_lock:
-                had_event = self._evt_recorded  # NOTE: comment translated from Chinese
+                had_event = self._evt_recorded  
                 if had_event:
                     # torch.cuda.current_stream().wait_event(self._accum_evt)
-                    # NOTE: comment translated from Chinese
+                    
                     with torch.cuda.device(self.device):
                         torch.cuda.current_stream().wait_event(self._accum_evt)
-                        self._evt_recorded = False  # NOTE: comment translated from Chinese
+                        self._evt_recorded = False  
 
                 if (self._gpu_buf_hot is None) or (self._gpu_w_hot is None):
-                    # NOTE: comment translated from Chinese
+                    
                     self._gpu_buf_ready = None
                     self._gpu_w_ready = None
                 else:
                     if (self._gpu_buf_ready is None) or (self._gpu_buf_ready.numel() != self._total_len):
                         self._gpu_buf_ready = torch.zeros_like(self._gpu_buf_hot)
                         self._gpu_w_ready = torch.zeros_like(self._gpu_w_hot)
-                        # NOTE: comment translated from Chinese
+                        
                     self._gpu_buf_ready, self._gpu_buf_hot = self._gpu_buf_hot, self._gpu_buf_ready
                     self._gpu_w_ready, self._gpu_w_hot = self._gpu_w_hot, self._gpu_w_ready
                     self._gpu_buf_hot.zero_()
                     self._gpu_w_hot.zero_()
 
-                # NOTE: comment translated from Chinese
+                
                 
                 self.agg_number_of_neighbor_param_received = self.number_of_neighbor_param_received
                 self.number_of_neighbor_param_received = 0
                 self.total_neighbor_weight = 0.0
 
-            # NOTE: comment translated from Chinese
-            # NOTE: comment translated from Chinese
+            
+            
             if (self._gpu_buf_ready is not None) and (self._gpu_w_ready is not None):
                 # flatten_buf.add_(self._gpu_buf_ready)
                 try:
@@ -474,51 +474,51 @@ class DecentralizedWorker(BaseDecentralizedWorker):
                     flatten_buf.mul_(self._gpu_w_ready)
 
                 finally:
-                    # NOTE: comment translated from Chinese
+                    
                     self._gpu_buf_ready.zero_()
                     self._gpu_w_ready.zero_()
                     with self._state_lock:
-                        # NOTE: comment translated from Chinese
+                        
                         self._payload_ready = False
                         self._agg_in_progress = False
 
             else:
-                # NOTE: comment translated from Chinese
+                
                 try:
                     logging.info("aggregate_for_flock with self._gpu_buf_ready is None in Worker {}.".format(self.worker_index))
                     flatten_buf.div_(float(self.neighbor_weight))
                 finally:
                     with self._state_lock:
-                        # NOTE: comment translated from Chinese
+                        
                         self._payload_ready = False
                         self._agg_in_progress = False
 
         # ------------------- CPU path -------------------
         else:
-            # NOTE: comment translated from Chinese
+            
             if self.number_of_neighbor_param_received == 0:
                 flatten_buf.div_(float(self.neighbor_weight))
                 return
 
-            # NOTE: comment translated from Chinese
+            
             with self._rx_lock:
                 ready = self._rx_active
                 ready_w = self.neighbor_total_weight_active
-                # NOTE: comment translated from Chinese
+                
                 self._rx_active, self._rx_standby = self._rx_standby, self._rx_active
                 self.neighbor_total_weight_active, self.neighbor_total_weight_standby = \
                     self.neighbor_total_weight_standby, self.neighbor_total_weight_active
-                # NOTE: comment translated from Chinese
+                
                 self.number_of_neighbor_param_received = 0
                 self.total_neighbor_weight = 0.0
             try:
-                # NOTE: comment translated from Chinese
+                
                 mask = ready_w > 0
                 if mask.any():
                     numer = flatten_buf[mask] + ready[mask]                   # 0.5*local + sumΔ
                     denom = ready_w[mask] + float(self.neighbor_weight)       # sum(0.5) + 0.5
                     flatten_buf[mask] = numer / denom
-                # NOTE: comment translated from Chinese
+                
                 inv = (~mask)
                 if inv.any():
                     flatten_buf[inv] = flatten_buf[inv] / float(self.neighbor_weight)
@@ -527,11 +527,11 @@ class DecentralizedWorker(BaseDecentralizedWorker):
                 # flatten_buf.mul_(ready_w)
                     
             finally:
-                # NOTE: comment translated from Chinese
+                
                 ready.zero_()
                 ready_w.zero_()
                 with self._state_lock:
-                    # NOTE: comment translated from Chinese
+                    
                     self._payload_ready = False
                     self._agg_in_progress = False
         

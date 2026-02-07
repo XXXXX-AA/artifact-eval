@@ -42,7 +42,7 @@ class FLOCK_FLCompressor(object):
     def uncompress_direct(self, *args, **kargs):
         return self.compressor_fn.uncompress_direct(*args, **kargs)
     
-    # NOTE: comment translated from Chinese
+    # 
     def decode_sparse_msg(self, msg_params, original_shapes):
         return self.compressor_fn.decode_sparse_msg(msg_params, original_shapes)
 
@@ -125,7 +125,7 @@ class FLOCK_FLSparsificationCompressor(object):
     #         original_shapes=original_shapes,
     #     )
     # 
-    # NOTE: comment translated from Chinese
+    # 
     #     hat_params.buffer[q_indices] += q_values.to(hat_params.buffer.device)
     #     return hat_params,
 
@@ -150,15 +150,15 @@ class FLOCK_FLSparsificationCompressor(object):
             hat_params.buffer[q_indices].device, q_values.device
         ))
         logging.debug("###################################")
-        # NOTE: comment translated from Chinese
-        local_slice  = hat_params.buffer[q_indices]  # NOTE: comment translated from Chinese
-        neigh_slice  = q_values.to(local_slice.device)  # NOTE: comment translated from Chinese
+        # 
+        local_slice  = hat_params.buffer[q_indices]  # 
+        neigh_slice  = q_values.to(local_slice.device)  # 
 
         COS_MIN = 0.9
         COS_MAX = 1.0
-        EPS     = 1e-8  # NOTE: comment translated from Chinese
+        EPS     = 1e-8  # 
 
-        # NOTE: comment translated from Chinese
+        # 
         cos_raw = torch.dot(local_slice, neigh_slice) / (
                 local_slice.norm() * neigh_slice.norm() + EPS)
         if cos_raw < self.min_sim:
@@ -166,14 +166,14 @@ class FLOCK_FLSparsificationCompressor(object):
         elif cos_raw > self.max_sim:
             self.max_sim = cos_raw
 
-        # NOTE: comment translated from Chinese
+        # 
         if cos_raw < COS_MIN:
             cos_raw = COS_MIN
         elif cos_raw > COS_MAX:
             cos_raw = COS_MAX
         cos_sim = (cos_raw - COS_MIN) / (COS_MAX - COS_MIN + EPS)
 
-        # NOTE: comment translated from Chinese
+        # 
         hat_params.buffer[q_indices] += weight * q_values.to(hat_params.buffer.device)
         return hat_params, cos_sim
 
@@ -201,7 +201,7 @@ class FLOCK_FLSparsificationCompressor(object):
         sync_buffer["flatten_params"].buffer[q_indices] = \
             aggregated_params.buffer[q_indices]
 
-    # NOTE: comment translated from Chinese
+    # 
     def decode_sparse_msg(self, msg_params, original_shapes):
         q_values, q_indices = self.compressor_fn.uncompress(
             values=msg_params.get(MyMessage.MSG_ARG_KEY_SPARSE_PARAMS_1),
@@ -214,23 +214,23 @@ class FLOCK_FLSparsificationCompressor(object):
         # indices = msg_params.get(MyMessage.MSG_ARG_KEY_SPARSE_INDEX_1)
         # sel_shapes = msg_params.get(MyMessage.MSG_ARG_KEY_SELECTED_SHAPES)
 
-        # NOTE: comment translated from Chinese
+        # 
         # if torch.is_tensor(sel_shapes):
         #     selected_shapes = sel_shapes.tolist()
         # else:
         #     selected_shapes = sel_shapes
 
-        # NOTE: comment translated from Chinese
+        # 
         # if torch.is_tensor(values) and values.is_cuda:
         #     values = values.detach().cpu()
         # if torch.is_tensor(indices) and indices.is_cuda:
         #     indices = indices.detach().cpu()
 
-        # NOTE: comment translated from Chinese
+        # 
         # q_values, q_indices = self.compressor_fn.uncompress(
         #     values, indices, selected_shapes, original_shapes
         # )
-        # NOTE: comment translated from Chinese
+        # 
         # if q_values.is_cuda:
         #     q_values = q_values.cpu()
         # if q_indices.is_cuda:

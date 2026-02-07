@@ -3,7 +3,7 @@ import os
 from decentralized_worker_manager import DecentralizedWorkerManager
 
 if __name__ == "__main__":
-    # NOTE: comment translated from Chinese
+    
     rank        = int(os.getenv("RANK", os.getenv("FEDML_CLIENT_ID", "0")))
     world_size  = int(os.getenv("WORLD_SIZE", "4"))
     bootstrap   = os.getenv("BOOTSTRAP_ADDR", "tcp://<host>:<port>")
@@ -14,6 +14,6 @@ if __name__ == "__main__":
         world_size=world_size,
         bootstrap=bootstrap,
         compress_ratio=compress,
-        # NOTE: comment translated from Chinese
+        
     )
     mgr.run_sync()

@@ -42,7 +42,7 @@ class DecentralizedWorkerManager(BaseDecentralizedWorkerManager):
             self.last_chosen_round[choice] = cur_r
             return int(choice)
 
-        # NOTE: comment translated from Chinese
+        
         choice = np.random.choice(outs)
         self.last_chosen_round[choice] = cur_r
         return int(choice)

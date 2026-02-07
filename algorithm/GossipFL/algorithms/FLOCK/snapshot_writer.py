@@ -12,7 +12,7 @@ class SnapshotWriter:
         self.th.start()
 
     def _atomic_write(self, bytes_or_path, target_path, is_tensor=False):
-        # NOTE: comment translated from Chinese
+        
         fd, tmp = tempfile.mkstemp(dir=self.out_dir)
         os.close(fd)
         try:
@@ -23,7 +23,7 @@ class SnapshotWriter:
                     f.write(bytes_or_path)
             os.replace(tmp, target_path)
         finally:
-            # NOTE: comment translated from Chinese
+            
             pass
 
     def _worker(self):
@@ -34,10 +34,10 @@ class SnapshotWriter:
             epoch, ts, snap_cpu, meta = item
             bin_path = os.path.join(self.out_dir, f"ep{epoch:04d}_{ts}.pt")
             meta_path = os.path.join(self.out_dir, f"ep{epoch:04d}_{ts}.json")
-            # NOTE: comment translated from Chinese
+            
             self._atomic_write(snap_cpu, bin_path, is_tensor=True)
             del snap_cpu
-            # NOTE: comment translated from Chinese
+            
             self._atomic_write(json.dumps(meta), meta_path, is_tensor=False)
             self.q.task_done()
 
@@ -67,15 +67,15 @@ import glob, re
 
 # class SnapshotReader:
 #     """
-# NOTE: comment translated from Chinese
-# NOTE: comment translated from Chinese
+
+
 #     """
 #     def __init__(self, snap_dir: str):
 #         self.snap_dir = snap_dir
 
 #     def scan(self, pattern: str = "ep*.pt"):
 #         """
-# NOTE: comment translated from Chinese
+
 #         """
 #         paths = glob.glob(os.path.join(self.snap_dir, pattern))
 #         def _parse_epoch(p):
@@ -92,14 +92,14 @@ import glob, re
 
 #     def read(self, bin_path: str, meta_path: str = None):
 #         """
-# NOTE: comment translated from Chinese
-# NOTE: comment translated from Chinese
-# NOTE: comment translated from Chinese
+
+
+
 #         """
 #         try:
 #             flat_cpu = torch.load(bin_path, map_location="cpu", weights_only=True)
 #         except TypeError:
-# NOTE: comment translated from Chinese
+
 #         meta = {}
 #         if meta_path and os.path.exists(meta_path):
 #             try:
